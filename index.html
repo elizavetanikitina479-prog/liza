@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f3eb">
+  <meta name="description" content="Чистые лапки — уютный груминг-салон для собак и кошек. Бережный уход, быстрые процедуры и удобная запись.">
+  <title>Чистые лапки — груминг с любовью</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F8F3EB',
+            milk: '#FFFCF7',
+            cocoa: '#604635',
+            mocha: '#8B6B52',
+            sand: '#E9D9C5',
+            caramel: '#C49A70',
+            ink: '#382A22'
+          },
+          fontFamily: {
+            sans: ['Arial', 'sans-serif'],
+            display: ['Georgia', 'serif']
+          },
+          boxShadow: {
+            soft: '0 15px 45px rgba(96,70,53,0.09)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #F8F3EB; color: #382A22; }
+    ::selection { background: #E9D9C5; color: #382A22; }
+    .hero-bg {
+      background:
+        linear-gradient(90deg, rgba(248,243,235,.97) 0%,
+        rgba(248,243,235,.87) 43%, rgba(248,243,235,.12) 100%),
+        url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1800&q=85')
+        center 48% / cover;
+    }
+    .section-label {
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .service-card { transition: transform .25s, box-shadow .25s; }
+    .service-card:hover { transform: translateY(-5px); }
+    .field {
+      width: 100%;
+      border: 1px solid #e5d7c6;
+      border-radius: 14px;
+      background: #fffdf9;
+      padding: 13px 15px;
+      color: #382a22;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field:focus {
+      border-color: #8b6b52;
+      box-shadow: 0 0 0 3px rgba(139,107,82,.12);
+    }
+    .field[aria-invalid="true"] { border-color: #c2413b; }
+    .error { color: #b42318; font-size: .8rem; margin-top: 5px; }
+    .nav-link { transition: color .2s; }
+    .nav-link:hover { color: #a47752; }
+    .paw-pattern {
+      background-image: radial-gradient(#d6c2aa 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    @media (max-width: 767px) {
+      .hero-bg {
+        background:
+          linear-gradient(180deg, rgba(248,243,235,.91) 0%,
+          rgba(248,243,235,.85) 52%, rgba(248,243,235,.35) 100%),
+          url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=80')
+          center / cover;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 border-b border-[#e9dfd2] bg-cream/95 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#home" class="flex items-center gap-3" aria-label="Чистые лапки — на главную">
+        <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-cocoa text-2xl text-cream">🐾</span>
+        <span>
+          <span class="block font-display text-xl font-bold leading-tight text-cocoa">Чистые лапки</span>
+          <span class="text-[10px] uppercase tracking-[.19em] text-mocha">груминг с любовью</span>
+        </span>
+      </a>
+
+      <nav id="desktopNav" class="hidden items-center gap-7 text-sm font-medium md:flex">
+        <a class="nav-link" href="#services">Услуги</a>
+        <a class="nav-link" href="#about">О нас</a>
+        <a class="nav-link" href="#reviews">Отзывы</a>
+        <a class="nav-link" href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="hidden items-center gap-4 lg:flex">
+        <a href="tel:+79990000000" class="text-sm font-semibold text-cocoa">+7 (999) 000-00-00</a>
+        <a href="#booking" class="rounded-full bg-cocoa px-6 py-3 text-sm font-semibold text-white transition hover:bg-mocha">
+          Записаться
+        </a>
+      </div>
+
+      <button id="menuButton" class="flex h-11 w-11 items-center justify-center rounded-xl border border-sand text-2xl text-cocoa md:hidden"
+        aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+        ☰
+      </button>
+    </div>
+
+    <nav id="mobileMenu" class="hidden border-t border-sand bg-cream px-5 pb-5 pt-3 md:hidden">
+      <div class="flex flex-col gap-4 text-sm font-medium">
+        <a class="mobile-link" href="#services">Услуги и цены</a>
+        <a class="mobile-link" href="#about">О нас</a>
+        <a class="mobile-link" href="#reviews">Отзывы</a>
+        <a class="mobile-link" href="#booking">Бронирование</a>
+        <a class="mobile-link" href="#contacts">Контакты</a>
+        <a href="tel:+79990000000" class="font-semibold text-cocoa">+7 (999) 000-00-00</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero-bg flex min-h-[610px] items-center md:min-h-[680px]">
+      <div class="mx-auto w-full max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+        <div class="max-w-2xl">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#dfcdb8] bg-milk/85 px-4 py-2 text-sm text-cocoa">
+            <span>♡</span> Заботливый уход без лишнего стресса
+          </div>
+
+          <h1 class="font-display text-5xl font-bold leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-7xl">
+            Красивые лапки.<br>
+            <span class="italic text-mocha">Счастливые</span> хвостики.
+          </h1>
+
+          <p class="mt-6 max-w-lg text-base leading-8 text-[#68584b] sm:text-lg">
+            Уютный груминг-салон для собак и кошек.
+            Наведём красоту, позаботимся о комфорте и сэкономим ваше время.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#booking" class="rounded-full bg-cocoa px-8 py-4 text-center font-semibold text-white shadow-soft transition hover:bg-mocha">
+              Записать питомца →
+            </a>
+            <a href="#services" class="rounded-full border border-cocoa/30 bg-milk/70 px-8 py-4 text-center font-semibold text-cocoa transition hover:bg-white">
+              Смотреть услуги
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-cocoa">
+            <span>✓ Бережный подход</span>
+            <span>✓ Удобная запись</span>
+            <span>✓ Забота о каждой лапке</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK BENEFITS -->
+    <section class="relative z-10 mx-auto -mt-7 max-w-6xl px-5">
+      <div class="grid grid-cols-1 gap-3 rounded-3xl border border-[#eee2d3] bg-milk p-5 shadow-soft sm:grid-cols-3 sm:p-7">
+        <div class="flex items-center gap-4 p-2">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f2e5d5] text-2xl">⏱️</span>
+          <div>
+            <h3 class="font-bold text-cocoa">Без долгого ожидания</h3>
+            <p class="mt-1 text-sm text-[#877568]">Работаем по записи</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 border-y border-[#eee2d3] p-2 py-5 sm:border-x sm:border-y-0 sm:px-6">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f2e5d5] text-2xl">♡</span>
+          <div>
+            <h3 class="font-bold text-cocoa">С любовью к питомцам</h3>
+            <p class="mt-1 text-sm text-[#877568]">Деликатный уход</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 p-2">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f2e5d5] text-2xl">✂️</span>
+          <div>
+            <h3 class="font-bold text-cocoa">Уход под ключ</h3>
+            <p class="mt-1 text-sm text-[#877568]">От мытья до стрижки</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="scroll-mt-24 py-24 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-12 text-center">
+          <p class="section-label text-mocha">Наши услуги</p>
+          <h2 class="mt-4 font-display text-4xl font-bold text-ink sm:text-5xl">Всё для красоты и комфорта</h2>
+          <p class="mx-auto mt-4 max-w-xl leading-7 text-[#877568]">
+            Подберём уход под особенности вашего любимца. Стоимость зависит от породы, размера и состояния шерсти.
+          </p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="service-card overflow-hidden rounded-3xl border border-[#eee2d3] bg-milk shadow-soft">
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800&q=80"
+              alt="Собака после ухода за шерстью" loading="lazy" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-mocha">Для собак</span>
+              <h3 class="mt-2 font-display text-2xl font-bold">Комплексный груминг</h3>
+              <p class="mt-3 text-sm leading-6 text-[#877568]">Купание, сушка, расчёсывание, стрижка по породе и уход за лапками.</p>
+              <div class="mt-6 flex items-center justify-between gap-2 border-t border-sand pt-5">
+                <div><span class="text-xs text-[#877568]">От</span> <strong class="text-2xl text-cocoa">2 000 ₽</strong></div>
+                <a href="#booking" data-service="Комплексный груминг собак" class="service-book rounded-full bg-[#efe2d3] px-4 py-2.5 text-sm font-semibold text-cocoa hover:bg-sand">Выбрать</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card overflow-hidden rounded-3xl border border-[#eee2d3] bg-milk shadow-soft">
+            <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80"
+              alt="Ухоженная домашняя кошка" loading="lazy" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-mocha">Для кошек</span>
+              <h3 class="mt-2 font-display text-2xl font-bold">Уход за кошкой</h3>
+              <p class="mt-3 text-sm leading-6 text-[#877568]">Вычесывание, бережное мытьё при необходимости, уход за когтями и шерстью.</p>
+              <div class="mt-6 flex items-center justify-between gap-2 border-t border-sand pt-5">
+                <div><span class="text-xs text-[#877568]">От</span> <strong class="text-2xl text-cocoa">1 500 ₽</strong></div>
+                <a href="#booking" data-service="Уход за кошкой" class="service-book rounded-full bg-[#efe2d3] px-4 py-2.5 text-sm font-semibold text-cocoa hover:bg-sand">Выбрать</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card overflow-hidden rounded-3xl border border-[#eee2d3] bg-milk shadow-soft">
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800&q=80"
+              alt="Уход за лапами собаки" loading="lazy" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-mocha">Быстрый уход</span>
+              <h3 class="mt-2 font-display text-2xl font-bold">Лапки и коготки</h3>
+              <p class="mt-3 text-sm leading-6 text-[#877568]">Стрижка когтей, обработка шерсти между подушечками и гигиенический уход.</p>
+              <div class="mt-6 flex items-center justify-between gap-2 border-t border-sand pt-5">
+                <div><span class="text-xs text-[#877568]">От</span> <strong class="text-2xl text-cocoa">500 ₽</strong></div>
+                <a href="#booking" data-service="Уход за лапками и когтями" class="service-book rounded-full bg-[#efe2d3] px-4 py-2.5 text-sm font-semibold text-cocoa hover:bg-sand">Выбрать</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card overflow-hidden rounded-3xl border border-[#eee2d3] bg-milk shadow-soft">
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80"
+              alt="Маленькая собака" loading="lazy" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-mocha">Для собак</span>
+              <h3 class="mt-2 font-display text-2xl font-bold">Экспресс-уход</h3>
+              <p class="mt-3 text-sm leading-6 text-[#877568]">Освежим внешний вид питомца: расчешем шерсть, приведём в порядок мордочку и лапы.</p>
+              <div class="mt-6 flex items-center justify-between gap-2 border-t border-sand pt-5">
+                <div><span class="text-xs text-[#877568]">От</span> <strong class="text-2xl text-cocoa">900 ₽</strong></div>
+                <a href="#booking" data-service="Экспресс-уход" class="service-book rounded-full bg-[#efe2d3] px-4 py-2.5 text-sm font-semibold text-cocoa hover:bg-sand">Выбрать</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card overflow-hidden rounded-3xl border border-[#eee2d3] bg-milk shadow-soft">
+            <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80"
+              alt="Средства для ухода за шерстью" loading="lazy" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-mocha">Гигиена</span>
+              <h3 class="mt-2 font-display text-2xl font-bold">Купание и сушка</h3>
+              <p class="mt-3 text-sm leading-6 text-[#877568]">Подходящие косметические средства, бережное очищение и аккуратная сушка.</p>
+              <div class="mt-6 flex items-center justify-between gap-2 border-t border-sand pt-5">
+                <div><span class="text-xs text-[#877568]">От</span> <strong class="text-2xl text-cocoa">1 200 ₽</strong></div>
+                <a href="#booking" data-service="Купание и сушка" class="service-book rounded-full bg-[#efe2d3] px-4 py-2.5 text-sm font-semibold text-cocoa hover:bg-sand">Выбрать</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="flex flex-col justify-between rounded-3xl bg-cocoa p-7 text-cream sm:p-8">
+            <div>
+              <span class="text-4xl">🐾</span>
+              <h3 class="mt-5 font-display text-3xl font-bold">Не знаете, что выбрать?</h3>
+              <p class="mt-4 leading-7 text-[#e3d3c1]">Расскажите нам о питомце — администратор поможет подобрать подходящую процедуру и время.</p>
+            </div>
+            <a href="#contacts" class="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-cream px-6 py-3 font-semibold text-cocoa hover:bg-white">Задать вопрос →</a>
+          </article>
+        </div>
+        <p class="mt-6 text-center text-xs leading-5 text-[#8c7969]">* Цены указаны для примера. Итоговая стоимость согласовывается перед процедурой.</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="scroll-mt-20 bg-[#efe5d8] py-20 lg:py-24">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2 lg:px-8">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=1000&q=85"
+            alt="Заботливый уход за собакой" loading="lazy" class="h-[390px] w-full rounded-[2rem] object-cover sm:h-[470px]">
+          <div class="absolute -bottom-5 right-4 rounded-2xl bg-milk p-5 shadow-soft sm:right-8">
+            <p class="font-display text-3xl font-bold text-cocoa">С заботой ♡</p>
+            <p class="mt-1 text-sm text-[#877568]">Каждый хвостик особенный</p>
+          </div>
+        </div>
+        <div class="pt-4 lg:pl-4">
+          <p class="section-label text-mocha">Почему мы</p>
+          <h2 class="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">Красота без спешки.<br>Сервис без ожидания.</h2>
+          <p class="mt-6 leading-8 text-[#786657]">
+            «Чистые лапки» — пространство, где уход за питомцем становится приятной привычкой.
+            Мы ценим ваше время, заранее согласовываем услуги и уделяем внимание комфорту каждого гостя.
+          </p>
+          <div class="mt-8 space-y-5">
+            <div class="flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-milk text-xl">🕒</span>
+              <div>
+                <h3 class="font-bold text-cocoa">Планируем время</h3>
+                <p class="mt-1 text-sm leading-6 text-[#786657]">Предварительная запись помогает избежать лишнего ожидания.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-milk text-xl">🌿</span>
+              <div>
+                <h3 class="font-bold text-cocoa">Учитываем характер</h3>
+                <p class="mt-1 text-sm leading-6 text-[#786657]">Подбираем подход к питомцу с учётом его привычек и особенностей.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-milk text-xl">✨</span>
+              <div>
+                <h3 class="font-bold text-cocoa">Объясняем каждый этап</h3>
+                <p class="mt-1 text-sm leading-6 text-[#786657]">Обсуждаем пожелания и стоимость до начала процедуры.</p>
+              </div>
+            </div>
+          </div>
+          <a href="#booking" class="mt-9 inline-flex rounded-full bg-cocoa px-7 py-4 font-semibold text-white hover:bg-mocha">Выбрать время визита →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking" class="scroll-mt-20 py-24 lg:py-28">
+      <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-8">
+        <div class="lg:sticky lg:top-28">
+          <p class="section-label text-mocha">Бронирование</p>
+          <h2 class="mt-4 font-display text-4xl font-bold leading-tight sm:text-5xl">Пара минут —<br>и вы записаны!</h2>
+          <p class="mt-5 max-w-md leading-8 text-[#877568]">
+            Заполните форму, выберите удобную дату и предпочтительное время. Администратор свяжется с вами для подтверждения записи.
+          </p>
+          <div class="mt-8 rounded-2xl border border-sand bg-milk p-5">
+            <p class="font-bold text-cocoa">Как это работает?</p>
+            <ol class="mt-4 space-y-4 text-sm text-[#877568]">
+              <li class="flex gap-3"><span class="font-bold text-mocha">01</span> Оставляете заявку на сайте</li>
+              <li class="flex gap-3"><span class="font-bold text-mocha">02</span> Мы уточняем детали и стоимость</li>
+              <li class="flex gap-3"><span class="font-bold text-mocha">03</span> Подтверждаем время визита</li>
+            </ol>
+          </div>
+        </div>
+
+        <form id="bookingForm" class="rounded-3xl border border-[#eee2d3] bg-milk p-5 shadow-soft sm:p-8" novalidate>
+          <h3 class="font-display text-2xl font-bold text-cocoa">Запись на груминг</h3>
+          <p class="mt-2 text-sm text-[#877568]">Поля со звёздочкой обязательны.</p>
+
+          <div class="mt-7 grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="ownerName" class="mb-2 block text-sm font-semibold">Ваше имя *</label>
+              <input id="ownerName" name="ownerName" class="field" placeholder="Например, Анна" autocomplete="name" required minlength="2" maxlength="60">
+              <p class="error hidden" id="ownerNameError"></p>
+            </div>
+            <div>
+              <label for="ownerPhone" class="mb-2 block text-sm font-semibold">Телефон *</label>
+              <input id="ownerPhone" name="ownerPhone" class="field" placeholder="+7 (999) 123-45-67" type="tel" autocomplete="tel" required>
+              <p class="error hidden" id="ownerPhoneError"></p>
+            </div>
+            <div>
+              <label for="petType" class="mb-2 block text-sm font-semibold">Ваш питомец *</label>
+              <select id="petType" name="petType" class="field" required>
+                <option value="">Выберите питомца</option>
+                <option value="Собака">Собака 🐶</option>
+                <option value="Кошка">Кошка 🐱</option>
+              </select>
+              <p class="error hidden" id="petTypeError"></p>
+            </div>
+            <div>
+              <label for="petName" class="mb-2 block text-sm font-semibold">Кличка питомца</label>
+              <input id="petName" name="petName" class="field" placeholder="Как зовут любимца?" maxlength="60">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="service" class="mb-2 block text-sm font-semibold">Услуга *</label>
+              <select id="service" name="service" class="field" required>
+                <option value="">Выберите услугу</option>
+                <option>Комплексный груминг собак</option>
+                <option>Уход за кошкой</option>
+                <option>Уход за лапками и когтями</option>
+                <option>Экспресс-уход</option>
+                <option>Купание и сушка</option>
+                <option>Нужна консультация</option>
+              </select>
+              <p class="error hidden" id="serviceError"></p>
+            </div>
+            <div>
+              <label for="bookingDate" class="mb-2 block text-sm font-semibold">Желаемая дата *</label>
+              <input id="bookingDate" name="bookingDate" class="field" type="date" required>
+              <p class="error hidden" id="bookingDateError"></p>
+            </div>
+            <div>
+              <label for="bookingTime" class="mb-2 block text-sm font-semibold">Время *</label>
+              <select id="bookingTime" name="bookingTime" class="field" required>
+                <option value="">Выберите время</option>
+                <option>10:00</option>
+                <option>11:00</option>
+                <option>12:00</option>
+                <option>13:00</option>
+                <option>14:00</option>
+                <option>15:00</option>
+                <option>16:00</option>
+                <option>17:00</option>
+                <option>18:00</option>
+              </select>
+              <p class="error hidden" id="bookingTimeError"></p>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="bookingComment" class="mb-2 block text-sm font-semibold">Комментарий</label>
+              <textarea id="bookingComment" name="bookingComment" class="field resize-y" rows="3" maxlength="500" placeholder="Порода, размер или особенности питомца..."></textarea>
+            </div>
+          </div>
+
+          <label class="mt-5 flex cursor-pointer items-start gap-3 text-xs leading-5 text-[#877568]">
+            <input id="bookingConsent" type="checkbox" class="mt-1 accent-[#604635]" required>
+            <span>Я согласен(на) на обработку персональных данных для ответа на заявку. *</span>
+          </label>
+          <p class="error hidden" id="bookingConsentError"></p>
+
+          <button type="submit" class="mt-6 w-full rounded-full bg-cocoa px-6 py-4 font-semibold text-white transition hover:bg-mocha disabled:opacity-60">
+            Отправить заявку →
+          </button>
+          <p class="mt-4 text-center text-xs leading-5 text-[#958273]">Отправка формы на этой демоверсии не создаёт реальную запись.</p>
+          <div id="bookingResult" class="mt-5 hidden rounded-2xl border border-[#d4dfc7] bg-[#f1f5eb] p-5 text-sm leading-6 text-[#425638]" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="scroll-mt-20 bg-[#efe5d8] py-24">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="text-center">
+          <p class="section-label text-mocha">Тёплые слова</p>
+          <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">Хвостики рекомендуют ♡</h2>
+          <p class="mt-4 text-[#877568]">Здесь вашим питомцам всегда рады.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+          <article class="rounded-3xl bg-milk p-7 shadow-soft">
+            <div class="text-lg tracking-widest text-[#bd925d]" aria-label="5 из 5 звёзд">★★★★★</div>
+            <p class="mt-5 leading-7 text-[#68584b]">«Очень понравилось отношение к нашему шпицу. Всё объяснили заранее, шерсть стала мягкой и пушистой. Обязательно придём снова!»</p>
+            <div class="mt-6 flex items-center gap-3 border-t border-sand pt-5">
+              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#ead7c1] text-xl">🐶</div>
+              <div><p class="font-bold text-cocoa">Мария</p><p class="text-xs text-[#958273]">Хозяйка шпица</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-3xl bg-milk p-7 shadow-soft">
+            <div class="text-lg tracking-widest text-[#bd925d]" aria-label="5 из 5 звёзд">★★★★★</div>
+            <p class="mt-5 leading-7 text-[#68584b]">«Удобно, что можно заранее выбрать время. Кошечку аккуратно вычесали, а мне подробно рассказали, как ухаживать за шерстью дома».</p>
+            <div class="mt-6 flex items-center gap-3 border-t border-sand pt-5">
+              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#ead7c1] text-xl">🐱</div>
+              <div><p class="font-bold text-cocoa">Александра</p><p class="text-xs text-[#958273]">Хозяйка кошки</p></div>
+            </div>
+          </article>
+
+          <article class="rounded-3xl bg-milk p-7 shadow-soft">
+            <div class="text-lg tracking-widest text-[#bd925d]" aria-label="5 из 5 звёзд">★★★★★</div>
+            <p class="mt-5 leading-7 text-[#68584b]">«Записались на экспресс-уход перед поездкой. Всё прошло организованно, без лишнего ожидания. Очень приятная атмосфера!»</p>
+            <div class="mt-6 flex items-center gap-3 border-t border-sand pt-5">
+              <div class="flex h-11 w-11 items-center justify-center rounded-full bg-[#ead7c1] text-xl">🐕</div>
+              <div><p class="font-bold text-cocoa">Ирина</p><p class="text-xs text-[#958273]">Хозяйка терьера</p></div>
+            </div>
+          </article>
+        </div>
+        <p class="mt-6 text-center text-xs text-[#958273]">* Отзывы демонстрационные. Перед публикацией замените их реальными отзывами клиентов.</p>
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="scroll-mt-20 py-24 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mb-12">
+          <p class="section-label text-mocha">Мы на связи</p>
+          <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">Познакомимся?</h2>
+          <p class="mt-4 max-w-xl leading-7 text-[#877568]">Наши администраторы ответят на вопросы об услугах, стоимости и свободном времени.</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="rounded-3xl border border-[#eee2d3] bg-milk p-6 shadow-soft sm:p-8">
+            <div class="flex items-center gap-4">
+              <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#efe2d3] text-3xl">👩🏻</div>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-mocha">Администратор № 1</p>
+                <h3 class="mt-1 font-display text-2xl font-bold text-cocoa">Анна</h3>
+                <p class="mt-1 text-sm text-[#877568]">Запись и консультации</p>
+              </div>
+            </div>
+            <div class="mt-6 space-y-4 border-t border-sand pt-6 text-sm">
+              <p><span class="text-[#958273]">Телефон:</span> <a class="ml-2 font-semibold text-cocoa hover:underline" href="tel:+79990000000">+7 (999) 000-00-00</a></p>
+              <p><span class="text-[#958273]">Время связи:</span> <span class="ml-2">10:00–19:00</span></p>
+              <a class="inline-flex rounded-full bg-[#efe2d3] px-5 py-3 font-semibold text-cocoa hover:bg-sand" href="tel:+79990000000">Позвонить Анне ↗</a>
+            </div>
+          </div>
+
+          <div class="rounded-3xl border border-[#eee2d3] bg-milk p-6 shadow-soft sm:p-8">
+            <div class="flex items-center gap-4">
+              <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#efe2d3] text-3xl">👩🏼</div>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest text-mocha">Администратор № 2</p>
+                <h3 class="mt-1 font-display text-2xl font-bold text-cocoa">Екатерина</h3>
+                <p class="mt-1 text-sm text-[#877568]">Вопросы по уходу и услугам</p>
+              </div>
+            </div>
+            <div class="mt-6 space-y-4 border-t border-sand pt-6 text-sm">
+              <p><span class="text-[#958273]">Телефон:</span> <a class="ml-2 font-semibold text-cocoa hover:underline" href="tel:+79990000001">+7 (999) 000-00-01</a></p>
+              <p><span class="text-[#958273]">Время связи:</span> <span class="ml-2">10:00–19:00</span></p>
+              <a class="inline-flex rounded-full bg-[#efe2d3] px-5 py-3 font-semibold text-cocoa hover:bg-sand" href="tel:+79990000001">Позвонить Екатерине ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-6 rounded-3xl bg-cocoa p-7 text-cream sm:grid-cols-3 sm:p-9">
+          <div>
+            <p class="text-sm text-[#d9c5b0]">Адрес салона</p>
+            <p class="mt-2 font-semibold">Укажите адрес салона</p>
+          </div>
+          <div>
+            <p class="text-sm text-[#d9c5b0]">График работы</p>
+            <p class="mt-2 font-semibold">Ежедневно, 10:00–19:00</p>
+          </div>
+          <div>
+            <p class="text-sm text-[#d9c5b0]">Электронная почта</p>
+            <a href="mailto:hello@chistielapki.ru" class="mt-2 inline-block font-semibold hover:underline">hello@chistielapki.ru</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback" class="scroll-mt-20 bg-[#efe5d8] py-20">
+      <div class="mx-auto grid max-w-7xl items-start gap-10 px-5 lg:grid-cols-2 lg:px-8">
+        <div class="pt-3">
+          <p class="section-label text-mocha">Обратная связь</p>
+          <h2 class="mt-4 font-display text-4xl font-bold sm:text-5xl">Есть вопрос?<br>Мы поможем ♡</h2>
+          <p class="mt-5 max-w-md leading-8 text-[#786657]">Оставьте сообщение, и наша команда поможет разобраться в услугах, подобрать уход и подготовиться к первому визиту.</p>
+          <div class="paw-pattern mt-8 flex h-36 max-w-md items-center justify-center rounded-3xl">
+            <span class="text-6xl">🐾</span>
+          </div>
+        </div>
+
+        <form id="feedbackForm" class="rounded-3xl border border-[#e7d9c7] bg-milk p-6 shadow-soft sm:p-8" novalidate>
+          <h3 class="font-display text-2xl font-bold text-cocoa">Напишите нам</h3>
+          <div class="mt-6 space-y-5">
+            <div>
+              <label for="feedbackName" class="mb-2 block text-sm font-semibold">Ваше имя *</label>
+              <input id="feedbackName" name="feedbackName" class="field" required minlength="2" maxlength="60" placeholder="Как к вам обращаться?">
+              <p class="error hidden" id="feedbackNameError"></p>
+            </div>
+            <div>
+              <label for="feedbackEmail" class="mb-2 block text-sm font-semibold">Электронная почта *</label>
+              <input id="feedbackEmail" name="feedbackEmail" class="field" type="email" required maxlength="254" placeholder="name@example.com">
+              <p class="error hidden" id="feedbackEmailError"></p>
+            </div>
+            <div>
+              <label for="feedbackTopic" class="mb-2 block text-sm font-semibold">Тема обращения</label>
+              <select id="feedbackTopic" name="feedbackTopic" class="field">
+                <option>Вопрос об услугах</option>
+                <option>Подбор ухода</option>
+                <option>Предложение</option>
+                <option>Другое</option>
+              </select>
+            </div>
+            <div>
+              <label for="feedbackMessage" class="mb-2 block text-sm font-semibold">Сообщение *</label>
+              <textarea id="feedbackMessage" name="feedbackMessage" class="field resize-y" rows="4" minlength="10" maxlength="2000" required placeholder="Расскажите, чем мы можем помочь..."></textarea>
+              <p class="error hidden" id="feedbackMessageError"></p>
+            </div>
+            <label class="flex cursor-pointer items-start gap-3 text-xs leading-5 text-[#877568]">
+              <input id="feedbackConsent" type="checkbox" class="mt-1 accent-[#604635]" required>
+              <span>Я согласен(на) на обработку персональных данных для ответа на обращение. *</span>
+            </label>
+            <p class="error hidden" id="feedbackConsentError"></p>
+            <button type="submit" class="w-full rounded-full bg-cocoa px-6 py-4 font-semibold text-white transition hover:bg-mocha">Отправить сообщение →</button>
+            <div id="feedbackResult" class="hidden rounded-2xl border border-[#d4dfc7] bg-[#f1f5eb] p-5 text-sm leading-6 text-[#425638]" role="status" aria-live="polite"></div>
+            <p class="text-xs leading-5 text-[#958273]">Демонстрационная форма: сообщения не передаются на сервер.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="px-5 py-20">
+      <div class="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-cocoa px-6 py-12 text-center text-cream sm:px-12 sm:py-16">
+        <p class="text-4xl">🐕 🐈</p>
+        <h2 class="mt-5 font-display text-4xl font-bold sm:text-5xl">Порадуем вашего любимца?</h2>
+        <p class="mx-auto mt-4 max-w-xl leading-7 text-[#e3d3c1]">Красивый внешний вид начинается с заботы. Выберите удобное время и приходите знакомиться!</p>
+        <a href="#booking" class="mt-8 inline-flex rounded-full bg-cream px-8 py-4 font-bold text-cocoa transition hover:bg-white">Записаться на груминг →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-sand bg-cream">
+    <div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 text-sm sm:flex-row sm:items-center sm:justify-between lg:px-8">
+      <a href="#home" class="font-display text-xl font-bold text-cocoa">🐾 Чистые лапки</a>
+      <p class="text-[#877568]">Уход с любовью к каждому хвостику.</p>
+      <div class="flex flex-wrap gap-4 text-[#877568]">
+        <a href="#services" class="hover:text-cocoa">Услуги</a>
+        <a href="#booking" class="hover:text-cocoa">Запись</a>
+        <a href="#contacts" class="hover:text-cocoa">Контакты</a>
+      </div>
+      <p class="text-xs text-[#958273]">© <span id="year"></span> Чистые лапки</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Мобильное меню
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuButton.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      menuButton.setAttribute('aria-expanded', String(!isHidden));
+      menuButton.setAttribute('aria-label', isHidden ? 'Открыть меню' : 'Закрыть меню');
+      menuButton.textContent = isHidden ? '☰' : '✕';
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Открыть меню');
+        menuButton.textContent = '☰';
+      });
+    });
+
+    // Автоматически обновляем год
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Ограничиваем дату бронирования сегодняшним числом и более поздними датами
+    const bookingDate = document.getElementById('bookingDate');
+    const today = new Date();
+    const localToday = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, '0'),
+      String(today.getDate()).padStart(2, '0')
+    ].join('-');
+    bookingDate.min = localToday;
+
+    // Выбор услуги из карточки каталога
+    document.querySelectorAll('.service-book').forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('service').value = button.dataset.service;
+      });
+    });
+
+    // Общая функция вывода ошибок
+    function setError(input, errorElement, message) {
+      errorElement.textContent = message;
+      errorElement.classList.toggle('hidden', !message);
+      input.setAttribute('aria-invalid', String(Boolean(message)));
+    }
+
+    function clearError(input, errorElement) {
+      setError(input, errorElement, '');
+    }
+
+    function validateName(input, errorElement, label) {
+      const value = input.value.trim();
+      let error = '';
+      if (!value) error = `Введите ${label.toLowerCase()}.`;
+      else if (value.length < 2) error = 'Введите не менее 2 символов.';
+      else if (value.length > 60) error = 'Максимум 60 символов.';
+      else if (/[<>]/.test(value)) error = 'Используйте корректное имя.';
+      setError(input, errorElement, error);
+      return !error;
+    }
+
+    function validatePhone(input, errorElement) {
+      const value = input.value.trim();
+      const digits = value.replace(/\D/g, '');
+      let error = '';
+      if (!value) error = 'Укажите номер телефона.';
+      else if (!/^[+\d\s().-]+$/.test(value) || digits.length < 10 || digits.length > 15) {
+        error = 'Проверьте номер телефона.';
+      }
+      setError(input, errorElement, error);
+      return !error;
+    }
+
+    function validateRequired(input, errorElement, message) {
+      const error = input.value.trim() ? '' : message;
+      setError(input, errorElement, error);
+      return !error;
+    }
+
+    function validateConsent(input, errorElement) {
+      const error = input.checked ? '' : 'Необходимо ваше согласие.';
+      errorElement.textContent = error;
+      errorElement.classList.toggle('hidden', !error);
+      return !error;
+    }
+
+    function validateDate(input, errorElement) {
+      let error = '';
+      if (!input.value) error = 'Выберите дату.';
+      else if (input.value < localToday) error = 'Дата не может быть в прошлом.';
+      setError(input, errorElement, error);
+      return !error;
+    }
+
+    // Бронирование: клиентская валидация и демонстрационное подтверждение
+    const bookingForm = document.getElementById('bookingForm');
+    const bookingResult = document.getElementById('bookingResult');
+
+    bookingForm.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const checks = [
+        validateName(
+          document.getElementById('ownerName'),
+          document.getElementById('ownerNameError'),
+          'ваше имя'
+        ),
+        validatePhone(
+          document.getElementById('ownerPhone'),
+          document.getElementById('ownerPhoneError')
+        ),
+        validateRequired(
+          document.getElementById('petType'),
+          document.getElementById('petTypeError'),
+          'Выберите питомца.'
+        ),
+        validateRequired(
+          document.getElementById('service'),
+          document.getElementById('serviceError'),
+          'Выберите услугу.'
+        ),
+        validateDate(
+          bookingDate,
+          document.getElementById('bookingDateError')
+        ),
+        validateRequired(
+          document.getElementById('bookingTime'),
+          document.getElementById('bookingTimeError'),
+          'Выберите время.'
+        ),
+        validateConsent(
+          document.getElementById('bookingConsent'),
+          document.getElementById('bookingConsentError')
+        )
+      ];
+
+      if (checks.some(isValid => !isValid)) {
+        bookingResult.classList.add('hidden');
+        const firstInvalid = bookingForm.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        else document.getElementById('bookingConsent').focus();
+        return;
+      }
+
+      const formData = new FormData(bookingForm);
+      const date = new Date(`${formData.get('bookingDate')}T12:00:00`);
+      const formattedDate = date.toLocaleDateString('ru-RU', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+
+      bookingResult.innerHTML = '';
+      const title = document.createElement('strong');
+      title.textContent = 'Заявка проверена!';
+      const details = document.createElement('p');
+      details.className = 'mt-2';
+      details.textContent =
+        `Питомец: ${formData.get('petType')}. ` +
+        `Услуга: ${formData.get('service')}. ` +
+        `Дата: ${formattedDate}, ${formData.get('bookingTime')}.`;
+      const note = document.createElement('p');
+      note.className = 'mt-2';
+      note.textContent =
+        'Это демонстрационный результат. Заявка не отправлена в салон. ' +
+        'Для реального бронирования подключите сервер или сервис записи.';
+      bookingResult.append(title, details, note);
+      bookingResult.classList.remove('hidden');
+      bookingResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // Обратная связь: проверяем имя, email, текст и согласие
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackResult = document.getElementById('feedbackResult');
+
+    feedbackForm.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const name = document.getElementById('feedbackName');
+      const email = document.getElementById('feedbackEmail');
+      const message = document.getElementById('feedbackMessage');
+      const consent = document.getElementById('feedbackConsent');
+
+      const nameValid = validateName(
+        name, document.getElementById('feedbackNameError'), 'ваше имя'
+      );
+
+      const emailValue = email.value.trim();
+      const emailError = !emailValue
+        ? 'Введите электронную почту.'
+        : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)
+          ? 'Введите корректный адрес, например name@example.com.'
+          : emailValue.length > 254
+            ? 'Адрес слишком длинный.'
+            : '';
+      setError(email, document.getElementById('feedbackEmailError'), emailError);
+
+      let messageError = '';
+      if (!message.value.trim()) messageError = 'Введите сообщение.';
+      else if (message.value.trim().length < 10) {
+        messageError = 'Сообщение должно содержать не менее 10 символов.';
+      }
+      setError(message, document.getElementById('feedbackMessageError'), messageError);
+
+      const consentValid = validateConsent(
+        consent, document.getElementById('feedbackConsentError')
+      );
+
+      if (!nameValid || Boolean(emailError) || Boolean(messageError) || !consentValid) {
+        feedbackResult.classList.add('hidden');
+        const firstInvalid = feedbackForm.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) firstInvalid.focus();
+        else consent.focus();
+        return;
+      }
+
+      feedbackResult.textContent =
+        'Форма заполнена корректно! Это демонстрация: сообщение не отправлено. ' +
+        'Чтобы получать обращения, подключите обработчик формы на сервере или сервис рассылки.';
+      feedbackResult.classList.remove('hidden');
+      feedbackResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // Скрываем подсказки об ошибках при изменении полей
+    document.querySelectorAll('#bookingForm input, #bookingForm select, #feedbackForm input, #feedbackForm textarea').forEach(input => {
+      input.addEventListener('input', () => {
+        if (input.type === 'checkbox') return;
+        input.removeAttribute('aria-invalid');
+      });
+      input.addEventListener('change', () => {
+        if (input.type === 'checkbox') {
+          const error = document.getElementById(input.id + 'Error');
+          if (error) error.classList.toggle('hidden', input.checked);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
